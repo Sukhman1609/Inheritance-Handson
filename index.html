@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>**INHERITANCE AND PROTOTYPE**</h1>
+    <h2>Q1.Create 2 objects - parent and child. Attach methods to parent and use those methods in child object using parents prototype</h2>
+    <h3><pre>function Parent() {
+        this.parentProperty = "I am a property of the parent object";
+      }
+      
+      Parent.prototype.parentMethod = function () {
+        console.log("This is a method of the parent object");
+      };
+      
+      function Child() {
+        this.childProperty = "I am a property of the child object";
+      }
+      Child.prototype = new Parent();
+      
+      var childObj = new Child();
+      
+      console.log(childObj.childProperty); // Output: "I am a property of the child object"
+      console.log(childObj.parentProperty); // Output: "I am a property of the parent object"
+      
+      childObj.parentMethod(); // Output: "This is a method of the parent object"
+      </pre></h3>
+      <hr>
+      <hr>
+      <h2>Q2. Write code to explain prototype chaining</h2>
+      <h3><pre>var parent = {
+        parentProperty: "I am abc",
+      };
+      
+      var child = Object.create(parent);
+      child.childProperty = "I am xyz";
+      
+      // Access properties using prototype chaining
+      console.log(child.childProperty); // Output: "I am xyz"
+      console.log(child.parentProperty); // Output: "I am abc"</pre></h3>
+      <hr>
+      <hr>
+      <h2><pre>Add a method to calculate sum of all elements in Array in array's protype, use that method to calculate sum for multiple arrays</pre></h2>
+      <h3><pre>
+Array.prototype.sum = function() {
+  var sum = 0;
+  for (var i = 0; i < this.length; i++) {
+    sum += this[i];
+  }
+  return sum;
+};
+
+// Create arrays
+var array1 = [1, 2, 3, 4, 5];
+var array2 = [10, 20, 30];
+var array3 = [2, 4, 6, 8];
+
+// Calculate sum using the sum method
+var sum1 = array1.sum();
+var sum2 = array2.sum();
+var sum3 = array3.sum();
+
+console.log(sum1); // Output: 15
+console.log(sum2); // Output: 60
+console.log(sum3); // Output: 20
+</pre></h3>
+<hr>
+<hr>
+<h2>Q4. Write a JavaScript function to retrieve all the names of object's own and inherited properties.</h2>
+<h3><pre>function getAllPropertyNames(obj) {
+    var propertyNames = [];
+  
+    for (var key in obj) {
+      propertyNames.push(key);
+    }
+  
+    return propertyNames;
+  }
+  
+  var obj = {
+    name: "John",
+    age: 30
+  };
+  
+  function Person() {
+    this.gender = "male";
+  }
+  
+  Person.prototype = obj;
+  
+  var person = new Person();
+  
+  var allPropertyNames = getAllPropertyNames(person);
+  console.log(allPropertyNames);</pre></h3>
+    <script src="script.js"></script>
+</body>
+</html>
